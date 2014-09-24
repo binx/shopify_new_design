@@ -1,0 +1,144 @@
+{% paginate collection.products by settings.collection_ppp %}
+
+<h1 class="page-title">
+    {{ collection.title }}
+    {% if current_tags %} by <span class="highlight">{{ current_tags }}</span> {% endif %}
+</h1>
+{% if current_tags %}
+  {% for tag in current_tags %}
+    {{ settings[tag].link }}
+    {{ settings[tag].text }}
+  {% endfor %}
+{% else %}
+{% if collection.title == "artist prints" %}
+<div class="subtitle">Limited Edition Runs Supporting Artists</div>
+{% endif %}
+<span style="display:none;">Filter By:</span>
+<ul class="subnav clearfix artist-tags" style="display:none;">
+  <!-- <li>
+    {% if collection.handle %}
+    {% comment %}Good for /collections/all collection and regular collections{% endcomment %}
+    <a href="/collections/{{ collection.handle }}">All</a>
+    {% comment %}Good for automatic type collections{% endcomment %}
+    {% elsif collection.products.first.type == collection.title %}
+    <a href="{{ collection.title | url_for_type }}">All</a>
+    {% comment %}Good for automatic vendor collections{% endcomment %}
+    {% elsif collection.products.first.vendor == collection.title %}
+    <a href="{{ collection.title | url_for_vendor }}">All</a>
+    {% endif %}
+  </li>  -->
+  {% for tag in collection.all_tags %}
+  {% if current_tags contains tag %}
+  <li class="active">
+    {{ tag | link_to_remove_tag: tag }}
+  </li>
+  {% else %}
+  <li>
+    {{ tag | link_to_tag: tag }}
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+<!-- <ul class="clearfix" id="collection-header">
+  <li id="collection-title"><h1 class="page-title">
+    {{ collection.title }}
+    {% if current_tags %} by <span class="highlight">{{ current_tags }}</span> {% endif %}
+  </h1></li>
+  {% if settings.show_bbt and collection.all_tags.size > 0 %}
+  <li class="clearfix filter">
+    <p>{{ settings.bbt_label }}</p>
+    <select class="special-select coll-filter" name="coll-filter" size="1">
+      <option value="">All</option>
+      {% for tag in collection.all_tags %}
+      {% if current_tags contains tag %}
+      <option value="{{ tag | handleize }}" selected>{{ tag }}</option>
+      {% else %}
+      <option value="{{ tag | handleize }}">{{ tag }}</option>
+      {% endif %}
+      {% endfor %}
+    </select>
+  </li>
+  {% endif %}
+</ul> -->
+
+{% if collection.description.size > 0 %}
+<div id="collection-description" class="rte">
+  {{ collection.description }}
+</div>
+{% endif %}
+
+{% if shop.products_count == 0 %}
+
+  {% include 'snippet-default-products' %}
+
+{% else %}
+
+  <ul id="coll-product-list" class="clearfix {{ collection.title }}">
+    {% for product in collection.products %}
+      {% if settings.products_per_row == '3' %}
+        {% include 'snippet-product-item' with 'three' %}
+      {% else %}
+        {% include 'snippet-product-item' with 'four' %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% include 'snippet-pagination' %}
+  {% if collection.title == "artist prints" %}
+    <div id="exp-text">
+      <div class="exp-text-half">
+        <h2>ART FOR ALL</h2>
+        <p><b>These artists have all been exploring animated gifs in beautiful, funny, and mindblowing ways.</b> And as designers ourselves, we understand the constant struggle between creating work that you are passionate about and paying the bills. So we want to celebrate and support this emerging medium by offering prints of this amazing work and send the profits to the artists. </p>
+        <h2>SUPPORTING ARTISTS</h2>
+        <p><b>Artists on Gifpop receive 80% of the profits we make on every art print sold.</b> This is an unheard-of arrangement for most art sales, but we think it's only fair. We are deeply uninterested in the standard 50/50 gallery model, and it has been incredibly rewarding for us to work with each artist here on bringing their work to life through lenticular printing.</p>
+        <h2>THE PRINTS</h2>
+        <p><b>All our prints are made right here in New York.</b> The large artist prints are 10"x10" and the small prints will be 5"x5" on sturdy 2-3mm thick lenticular sheets. We've worked with all the artists to pick gifs that will look great, and the artists themselves have worked hard to rerender, add detail, recolor, and adjust their work to make these prints truly unique.</p>
+      </div>
+      <div class="exp-text-half">
+        <img class="exp-image exp-image-first" src="http://cdn.gifpop.io/static/images/sample_gifs/dvdp_large_390.gif" />
+        <img class="exp-image" src="http://cdn.gifpop.io/static/images/sample_gifs/patakk_three_large_390.gif" />
+      </div>
+    </div>
+  {% elsif collection.title == "historical gifs" %}
+    <div id="exp-text">
+      <div class="exp-text-half">
+        <p><b>An oldie but a goodie.</b> These historic gifs point to our rich cinematic heritage, and look pretty cool, too!</p>
+      </div>
+      <div class="exp-text-half">
+        <img class="exp-image" src="http://cdn.shopify.com/s/files/1/0172/2296/products/cockatoo_grande.gif" width="400px">
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+<!-- {% include 'snippet-breadcrumbs' %} -->
+
+{% endpaginate %}
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ '0my-tag0' | link_to_tag: '0my-tag0' }}').attr('href').replace('0my-tag0', query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>

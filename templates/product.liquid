@@ -1,0 +1,493 @@
+{% include 'shappify-qb-no-select' %}
+<div class="clearfix {{ product.type }}" id="product-content" itemscope itemtype="http://schema.org/Product">
+
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+  <meta itemprop="image" content="{{ product.featured_image.src | product_img_url: 'grande' }}" />
+
+  {% if product.type == "gifchop" %}
+    <iframe id="gifbot" src="http://cdn.gifpop.io/static/upload-gifchop.html"></iframe>
+  {% elsif product.type == "flipflop" %}
+    <iframe id="gifbot" src="http://cdn.gifpop.io/static/upload-flipflop1.html"></iframe>
+  {% endif %}
+
+  {% comment %}The reason why we're removing the form tags when the product is sold out is because we add a 'notify me when product is available' contact form within, and nested forms don't work.{% endcomment %}
+  {% if product.available %}
+  <div id="exp-text">
+    <div class="exp-text-half">
+      <h2>WHAT MAKES A GOOD GIFPOP?</h2>
+      <p>Lenticular printing is an awesome process, and we're pushing it to the limit by printing many frames on a single card. That said, not all gifs were created equally, and some animations will work better than others.</p>
+      <h2>FRAMES / GHOSTING</h2>
+      <p>We're currently printing up to ten frames on a single card. Because there is always a little ghosting on lenticular cards as you go up to high frame counts, we're currently limiting the Gifpop creation process to ten sequential frames. Gifs that are very blurry or have lots of sudden camera movements will be less clear than ones with smooth, clear motion.</p>
+    </div>
+    <div class="exp-text-half">
+      <h2>RESOLUTION</h2>
+      <p>We know gifs aren't always the highest resolution, and so are printing small cards to start with. If you'd like to print at a high resolution, feel free to use our two image flip uploader to send us hi-res assets!</p>
+      <h2>ARTISTS</h2>
+      <p>We work with our artists directly to do test prints at print resolution, and most of our profits go straight back to the artists. If you're an artist and want to get in touch, say hi at <a href="mailto:artists@gifpop.io"><b>artists@gifpop.io</b></a>!</p>
+    </div>
+  </div>
+
+  <form id="product-options" action="/cart/add" method="post" enctype="multipart/form-data">
+  {% endif %}
+    <!-- {{ product.title | replace: ' ', '_' }}.html"></iframe> -->
+
+    <ul id="product-details">
+
+      <li id="product-photos">
+
+      {% if product.images.size == 0 %}
+
+        <div id="product-photo-container">
+          <img src="{{ '' | product_img_url: 'grande' }}" alt="" />
+        </div><!-- #product-photo-container -->
+
+      {% else %}
+
+        <div id="product-photo-container">
+          {% for image in product.images %}
+          <a class="gallery" href="{{ image.src | product_img_url: 'original' }}" rel="gallery">
+            <img src="{{ image.src | product_img_url: 'grande' }}" alt="{{ image.alt | escape }}" />
+          </a>
+          {% endfor %}
+        </div><!-- #product-photo-container -->
+
+        {% if product.images.size > 1 %}
+        <ul id="product-photo-thumbs" class="clearfix">
+          {% for image in product.images %}
+          <li class="product-photo-thumb">
+            <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+      {% endif %}
+
+
+      </li><!-- #product-photos -->
+
+      <div id="product-title">
+        <h1 itemprop="name">{{ product.title }}</h1>
+        {% if settings.show_vendor %}
+        {% assign product_vendor_handle = product.vendor | handle %}
+        {% if collections[product_vendor_handle].handle == product_vendor_handle %}
+          {% assign vendor_url = collections[product_vendor_handle].url %}
+        {% else %}
+          {% assign vendor_url = product.vendor | url_for_vendor %}
+        {% endif %}
+        <h2 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h2>
+        {% endif %}
+      </div>
+
+      {% if settings.prod_desc_placement == 'above' %}
+        <div id="product-description" class="above">
+          {% comment %}<h2>Description</h2>{% endcomment %}
+          <div id="full_description" class="rte" itemprop="description">
+            {{ product.description }}
+          </div>
+        </div>
+      {% endif %}
+
+      <li id="product-variants" class="clearfix{% if hide_default_title %}{% unless settings.show_qty and product.available %} hidden{% endunless %}{% endif %} left-half">
+        <div{% if hide_default_title %} class="hidden"{% endif %}>
+          <div class="sub-header">Size</div>
+          <ul>
+            {% for variant in product.variants %}
+            {% if variant.metafields.shappify_qb.qb_hide == "1" %}{% else %}
+              <li class="{{ variant.id }} {{ variant.title }}">
+                <div class="compare {{ variant.id }}"></div>
+                <div class="size"></div>
+                <div class="type">{{ variant.title }}</div>
+                <!-- <div class="price">{{ variant.price | money }}</div> -->
+              </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          <select id="product-select" name="id" class="hidden" style="display: none;">
+            {% for variant in product.variants %}
+            <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% if settings.show_qty %}
+        {% include 'snippet-quantity' %}
+        {% endif %}
+      </li>
+
+      <li class="right-half">
+        <div class="sub-header" style="margin-bottom:30px;">Quantity</div>
+        <div class="pair">
+          <div class="money">{{ product.price | money }}</div>
+          <div class="caption">each</div>
+        </div>
+        {% unless product.type == "artist" %}
+        <div class="arith" style="font-size: 30px; margin-right:4px;">&#x2715;</div>
+        <div class="pair" style="margin-right:0px;">
+          <input min="1" max="99" type="number" id="quantity" name="quantity" value="1" />
+          <div class="caption" style="margin-left: -10px">pop</div>
+        </div>
+        {% endunless %}
+        <div id="variant-inventory">
+        {% if product.variants.second.inventory_management == "shopify" and product.variants.second.inventory_quantity > 0 %}
+        We currently have {{ product.variants.second.inventory_quantity }} in stock.
+        {% endif %}
+        </div>
+        <!-- <div class="arith" style="margin-right: 10px;">&#x3d;</div>
+        <div class="pair" style="margin-right:0px;">
+          <div class="total">{{ product.price | money }}</div>
+          <div class="caption">total</div>
+        </div> -->
+        <div id="shappify-qty"><table class="shappify_qb_grid">  <thead>   <tr>    <th>Qty</th>    <th>Discount</th>   </tr>  </thead>  <tbody>     <tr>    <td>Buy 1</td>    <td>0% Off</td>   </tr>     <tr>    <td>Order 2+</td>    <td>10% Off</td>   </tr>     <tr>    <td>Order 5+</td>    <td>15% Off</td>   </tr>     <tr>    <td>Order 10+</td>    <td>25% Off</td>   </tr>     <tr>    <td>Order 50+</td>    <td>50% Off</td>   </tr>    </tbody>  </table></div>
+      </li>
+
+      <!-- <li id="product-prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer" style="clear:both;">
+        <h2 class="product-type"></h2>
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+        {% if product.available %}
+        <link itemprop="availability" href="http://schema.org/InStock" />
+        {% else %}
+        <link itemprop="availability" href="http://schema.org/OutOfStock" />
+        {% endif %}
+        <p id="product-price" class="smooth">
+          {% if product.compare_at_price > product.price %}
+          <span class="product-price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<span class="product-compare-price">{{ product.compare_at_price_max | money }}</span>
+          {% else %}
+          <span class="product-price" itemprop="price">{{ product.price | money }}</span>
+          {% endif %}
+        </p>
+      </li> -->
+
+      {% assign hide_default_title = false %}
+      {% if shappify_qb_options_count == 1 and product.variants.first.title contains 'Default' %}
+        {% assign hide_default_title = true %}
+      {% endif %}
+
+      {% comment %}
+      Additional form fields to customize your product.
+      Example code below for every type of form fields.
+      Use any form field, and as many as you need.
+      {% endcomment %}
+
+      {% comment %}
+      Added hidden field for couch doc id
+      {% endcomment %}
+      <input class="text" type="hidden" id="gifbot-doc-id" name="properties[doc-id]" value="" />
+
+      {% comment %}
+      <li id="properties">
+        <div class="property-wrapper">
+          <label for="first-property">First Property</label>
+          <select id="first-property" name="properties[First Property]">
+            <option>First Option</option>
+            <option>Second Option</option>
+            <option>Third Option</option>
+            <option>Fourth Option</option>
+          </select>
+        </div>
+        <div class="property-wrapper">
+          <p>Second Property</p>
+          <input class="radio" type="radio" id="first-option" name="properties[Second Property]" value="First Option" /> <label for="first-option">First Option</label>
+          <input class="radio"type="radio" id="second-option" name="properties[Second Property]" value="Second Option" /> <label for="second-option">Second Option</label>
+          <input class="radio"type="radio" id="third-option" name="properties[Second Property]" value="Third Option" /> <label for="third-option">Third Option</label>
+          <input class="radio"type="radio" id="fourth-option" name="properties[Second Property]" value="Fourth Option" /> <label for="fourth-option">Fourth Option</label>
+        </div>
+        <div class="property-wrapper">
+          <label for="third-property">Third Property</label>
+          <input class="text" type="text" id="third-property" name="properties[Third Property]" value="" />
+        </div>
+        <div class="property-wrapper">
+          <input class="checkbox" type="checkbox" id="fourth-property" name="properties[Fourth Property]" value="Yes" />
+          <label for="fourth-property">Fourth Property Opt-in</label>
+        </div>
+        <div class="property-wrapper">
+          <label for="fifth-property">Fifth Property</label>
+          <input class="file" type="file" id="fifth-property" name="properties[Fifth Property]" />
+        </div>
+      </li>
+      {% endcomment %}
+
+      <li id="backorder" class="hidden">
+        <p>{{ settings.back_order_msg | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+      </li>
+
+      {% unless product.available %}
+      {% if settings.notify_me_form %}
+      <li id="sold-out">
+        {% include 'snippet-notify-me' %}
+      </li>
+      {% endif %}
+      {% endunless %}
+
+      <li id="product-add">
+        <div id="product-add-wrap">
+          {% if product.type == "gifchop" || product.type == "flipflop" %}
+            <div class="triangle"></div>
+            <a id="go-back" href="{{ shop.url }}{{ product.url }}">Start Over</a>
+          {% endif %}
+          <!-- <div id="product-add-medallion" class=""></div> --><!-- #product-add-medallion -->
+          <input type="submit" name="add" id="add" value="Add to cart" class="smooth skew">
+        </div><!-- #product-add-wrap -->
+        <p style="float: right;clear: both;margin: 5px 7px;color: #a9aaaa;">ships in 4-5 business days</p>
+      </li>
+
+      <!-- {% if collection %}
+        {% if collection.previous_product or collection.next_product %}
+        <li class="accent-text prev-next clearfix">
+        {% if collection.previous_product %}
+          {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
+          <span class="left">{{ '&larr; Previous Product' | link_to: prev_url }}</span>
+        {% endif %}
+        {% if collection.next_product %}
+          {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
+          <span class="right">{{ 'Next Product &rarr;' | link_to: next_url }}</span>
+        {% endif %}
+        </li>
+        {% endif %}
+      {% endif %} -->
+
+      {% if settings.prod_desc_placement == 'below' %}
+      <li id="product-description" class="below">
+        <h2>Description</h2>
+        <div id="full_description" class="rte" itemprop="description">
+          {{ product.description }}
+        </div><!-- #full_description rte -->
+      </li>
+      {% endif %}
+
+      <li id="product-share">
+        {% include 'snippet-product-share' %}
+      </li>
+
+    </ul><!-- #product-description -->
+
+  {% if product.available %}
+  </form>
+  {% endif %}
+
+  {% if settings.prod_desc_placement == 'bottom' %}
+  <div id="product-description" class="bottom">
+    <h2>Description</h2>
+    <div id="full_description" class="rte" itemprop="description">
+      {{ product.description }}
+    </div><!-- #full_description rte -->
+  </div>
+  {% endif %}
+
+</div><!-- #product-content -->
+
+{% include 'snippet-related-products' %}
+<!-- {% include 'snippet-breadcrumbs' %} -->
+
+<script>
+jQuery(function() {
+
+  {% assign look_for_image_match = false %}
+  {% assign option_index = 0 %}
+  {% for option in product.options %}
+    {% assign downcased_option = option | downcase %}
+    {% if look_for_image_match == false %}
+      {% if downcased_option contains 'color' or downcased_option contains 'colour' or downcased_option contains 'style' %}
+        {% assign look_for_image_match = true %}
+        {% assign option_index = forloop.index0 %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  Shopify.doNotTriggerClickOnThumb = false;
+
+  var price = 0;
+  var quanInput = $("#quantity");
+  var artist = $("#product-content").hasClass("artist") || $("#product-content").hasClass("out-of-copyright");
+
+  var selectCallback = function(variant, selector) {
+
+    if (variant) {
+
+      if (variant.inventory_management == "shopify") {
+        console.log(variant.price)
+        if (variant.inventory_quantity > 0 && variant.price == 2500) {
+          jQuery('#variant-inventory').text(variant.inventory_quantity + ' left of 20');
+        } else if (variant.inventory_quantity > 0) {
+          jQuery('#variant-inventory').text(variant.inventory_quantity + ' left of 10');
+        } else {
+          jQuery('#variant-inventory').text("sold out");
+        }
+      } else {
+        jQuery('#variant-inventory').text("");
+      }
+
+      if (variant.available) {
+
+        // Selected a valid variant that is available.
+        jQuery('#add').removeClass('disabled').removeAttr('disabled').val('Add to Cart').fadeTo(200,1); // remove unavailable class from add-to-cart button, and re-enable button
+
+        // If item is backordered yet can still be ordered, we'll show special message.
+        if (variant.inventory_management && variant.inventory_quantity <= 0) {
+          jQuery('#selected-variant').html({{ product.title | json }}{% unless hide_default_title %} + ' - ' + variant.title{% endunless %});
+          jQuery('#backorder').removeClass("hidden").fadeTo(200,1);
+        } else {
+          jQuery('#backorder').fadeTo(200,0).addClass("hidden");
+        }
+
+      } else {
+        // Variant is sold out.
+        jQuery('#backorder').fadeTo(200,0).addClass("hidden");
+        jQuery('#add').val('Sold Out').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);
+      }
+
+      // Whether the variant is in stock or not, we can update the price and compare at price.
+      if ( variant.compare_at_price > variant.price ) {
+        jQuery('#product-price').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<span class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</span>');  // update price field
+      } else {
+        jQuery("#product-prices .product-type").text(variant.title);
+        var shortPrice = Shopify.formatMoney(variant.price, "{{ shop.money_format }}").slice(0,-3);
+        jQuery('#product-price').html('<span class="product-price">'+ shortPrice + '</span>' );  // update price field
+        // $(".money").text(shortPrice);
+        price = shortPrice;
+        setPrice(price);
+      }
+
+      {% if settings.show_multiple_currencies %}
+      Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val(), 'form[action="/cart/add"] span.money');
+      {% endif %}
+
+
+    } else {
+      // variant doesn't exist.
+      jQuery('#backorder').fadeTo(200,0).addClass("hidden");
+      jQuery('#add').val('Unavailable').addClass('disabled').attr('disabled', 'disabled').fadeTo(200,0.5);      // set add-to-cart button to unavailable class and disable button
+    }
+
+  };
+
+  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+
+  if (document.getElementById("gifbot"))
+    var gifbot = document.getElementById("gifbot").contentWindow;
+
+  $("#product-variants li:first").addClass("selected");
+
+  $("#product-variants li").click(function(){
+    $("#product-variants li").removeClass("selected");
+    $(this).addClass("selected");
+    var type = $(this).find(".type").text();
+    $("#product-select-option-0").val(type).change();
+    if (artist) return;
+    var t = type.slice(0,3);
+    gifbot.postMessage("s_"+t, "http://cdn.gifpop.io/upload");
+    // setTotal();
+  });
+
+  quanInput.keyup(function(){
+    if ($(this).val() > 99)
+      $(this).val(99);
+    setQuantityWidth(quanInput);
+    setPrice(price);
+  });
+  quanInput.click(function(){
+    setQuantityWidth(quanInput);
+    setPrice(price);
+  });
+
+  function setQuantityWidth(q) {
+    var num = $(q).val();
+    q.css("width",(1+Math.floor(Math.log(num)/Math.log(10)))*30 + 20 + "px");
+    if (num > 1)
+      q.parent().find(".caption").text("pops");
+    else
+      q.parent().find(".caption").text("pop");
+    // setTotal();
+  }
+  function setTotal() {
+    var num = quantity.val();
+    var price = $(".money").text().substring(1);
+    $(".total").text("$"+(num*price));
+  }
+
+  function setPrice(price) {
+    if (artist) {
+      $(".money").text(price);
+      return;
+    }
+    var num = $(quanInput).val(),
+      returnPrice;
+    price = Number(price.substring(1,price.length));
+    if (num > 1 && num < 5) {
+      returnPrice = price*.9;
+    } else if (num >= 5 && num < 10) {
+      returnPrice = price*.85;
+    } else if (num >= 10 && num < 50) {
+      returnPrice = price*.75;
+    } else if (num >= 50) {
+      returnPrice = price*.50;
+    } else
+      returnPrice = price;
+    $(".money").text("$"+returnPrice.toFixed(2));
+  }
+  // setTotal();
+
+  // shamelessly copypasta'd from http://davidwalsh.name/window-iframe
+  var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+  var eventer = window[eventMethod];
+  var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+
+  eventer(messageEvent,function(e) {
+    if (e.data == "gotoflipflop") {
+      window.location.href = "/products/flipflop";
+      return;
+    }
+    // save doc id as line item property
+    var type = e.data.split("|")[0];
+    if (type == 'doc_id') {
+      var doc = e.data.split("|").pop();
+      $("#gifbot-doc-id").val(doc);
+    } else if (type == 'save_frames') {
+      $("#exp-text").hide();
+      $("#product-options").show().slideDown();
+      $("#gifbot").addClass("done");
+    }
+  },false);
+
+  jQuery('.single-option-selector').addClass('special-select').customStyle();
+
+  // Add label if only one product option and it isn't 'Title'.
+  {% if product.options.size == 1 and product.options.first != 'Title' %}
+    jQuery('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
+  {% endif %}
+
+  // Auto-select first available variant on page load.
+  {% assign found_one_in_stock = false %}
+  {% for variant in product.variants %}
+    {% if variant.available and found_one_in_stock == false %}
+      {% assign found_one_in_stock = true %}
+      {% for option in product.options %}
+      jQuery('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% if look_for_image_match %}
+  // If a Color is selected, show the matching product image.
+  jQuery('.single-option-selector:eq({{ option_index }})').bind('change', function() {
+    if (!Shopify.doNotTriggerClickOnThumb) {
+      jQuery('#product-photo-thumbs img[alt="' + jQuery(this).val() + '"]:eq(0)').trigger('click');
+    }
+    Shopify.doNotTriggerClickOnThumb = false;
+    return true;
+  });
+  // If an image is shown in Main View, auto-select the corresponding Color option.
+  jQuery('#product-photo-thumbs img').bind('click', function() {
+   var color = jQuery(this).attr('alt');
+   if (color && color !== '') {
+     var options = jQuery('.single-option-selector:eq({{ option_index }}) option[value="' + color + '"]');
+     if (options.size() !== 0) {
+       Shopify.doNotTriggerClickOnThumb = true;
+       jQuery('.single-option-selector:eq({{ option_index }})').val(color).trigger('change');
+     }
+   }
+   return true;
+  });
+  {% endif %}
+
+});
+
+</script>
