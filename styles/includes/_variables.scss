@@ -1,0 +1,47 @@
+//Typography
+
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif: "Georgia", "Times New Roman", Times, serif;
+$futura: "futura-pt", "Futura", $sans-serif;
+
+//Sizes
+
+$navHeightS: 120px;
+$navHeightM: 150px;
+$navHeightL: 180px;
+
+$logoS: 60px;
+$logoM: 120px;
+$logoL: 160px;
+
+$navShiftS: -85px;
+$navShiftM: -165px;
+$navShiftL: -225px;
+
+//Colors
+
+$brandOrange : #f8981d;
+$navColor : rgb(16, 26, 26);
+$navFadeStart : rgba(16, 26, 26, 1.0);
+$navFadeEnd : rgba(16, 26, 26, 0.01);
+
+//Free Speech Magenta
+$cycleMagenta : rgba(224, 63, 223, 1);
+
+//Razzmatazz
+$cycleRed : rgba(239, 47, 105, 1);
+
+//Indian Yellow
+$cycleOrange : hsla(31, 76%, 62%, 1);
+
+//Manz
+$cycleYellow : rgba(233, 220, 86, 1);
+
+//Screamin Green
+$cycleGreen : rgba(115, 235, 93, 1);
+
+//Cornflower Blue
+$cycleBlue : rgba(101, 169, 246, 1);
+
+//Medium Slate Blue;
+$cycleIndigo : rgba(122, 84, 240, 1);

@@ -7,7 +7,142 @@
 
     {% if settings.show_product_list and settings.product_list_collection != '' and collections[settings.product_list_collection].handle == settings.product_list_collection %}
 
-          <h2 style="margin: 20px 0 50px;
+
+    <navivation id="main-nav" class="preload">
+            <div id="logo"></div>
+            <ul id="nav-items">
+                <li><a href="">Make One</a></li>
+                <li><a href="">Art Prints</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Blog</a></li>
+            </ul>
+        </navivation>
+
+        <div id="container" class="preload">
+
+                <!-- <div id="nav-clear"></div> -->
+                <div id="home-intro" class="home-container resize-height" data-height="125">
+                    <div class="sprite-bg" data-frames="10" data-speed="4">
+                        <img src="" data-echo="./images/sprites/01.jpg" />
+                    </div>
+                    <div class="bg-vignette bg-vignette-dark"></div>
+                    <!-- <div id="nav-fade"></div> -->
+                    <div class="content vertical-center">
+                        <div class="wrap">
+                            <h2>Turn your GIFs into IRL prints</h2>
+                            <p>Through the magic of lenticular printing, Gifpop can turn all of your wildest GIFs in to real printed animated pieces.</p>
+                            <div class="cta">
+                                <a class="button scroll-button" href="#home-browse"><img src="./images/down-arrow.svg" width="25px" height="25px" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="home-browse" class="home-container resize-height" data-height="100">
+                    <div class="sprite-bg" data-frames="16" data-speed="1">
+                        <img src="" data-echo="./images/sprites/02-browse.jpg" />
+                    </div>
+                    <div class="bg-vignette bg-vignette-dark"></div>
+                     <div class="content vertical-center">
+                        <div class="wrap">
+                            <h2>Use your favorite GIF</h2>
+                            <p>GIFs are everywhere, you may have made some of your own. No matter the GIF we can Gifpop it for you.</p>
+                            <div class="cta">
+                                <a class="button scroll-button" href="/make.html">Make One</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="home-giffy" class="home-container resize-height" data-height="100">
+                    <div class="sprite-bg" data-frames="7" data-speed="2">
+                        <img src="" data-echo="./images/sprites/04-gifpop.png" />
+                    </div>
+                    <div class="bg-vignette bg-vignette-dark"></div>
+                     <div class="content vertical-center">
+                        <div class="wrap">
+                            <h2>Time for Magic</h2>
+                            <p>We take your GIFs and do some magic to turn them into 10 frame lenticular prints that come to life when you move them</p>
+                            <div class="cta">
+                                <a class="button scroll-button" href="/about.html">How it Works</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="home-example" class="home-container resize-height" data-height="100">
+                    <div class="sprite-bg" data-frames="16" data-speed="2">
+                        <img src="" data-echo="./images/sprites/03-example.jpg" />
+                    </div>
+                    <div class="bg-vignette bg-vignette-dark"></div>
+                     <div class="content vertical-center">
+                        <div class="wrap">
+                            <h2>Here's what you get</h2>
+                            <p>A beautiful print that captures the movement of your GIF, in your hands. Also check out our limited artists prints.</p>
+                            <div class="cta">
+                                <a class="button scroll-button" href="/about.html">Artists Prints</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="home-footer" class="home-container resize-height" data-height="100">
+                    <div class="sprite-bg" data-frames="10" data-speed="8">
+                        <img src="" data-echo="./images/sprites/05-footer.png" />
+                    </div>
+                    <div class="bg-vignette bg-vignette-very-dark"></div>
+                     <div class="content">
+                        <div class="wrap">
+
+                            <div class="artist-gifs footer-summary">
+                                <h3>Check out our Artists Prints</h3>
+                                    <img src="" data-echo="./images/gifs/89a.gif" width="250px" height="250px" />
+                                    <img src="" data-echo="./images/gifs/remastered.gif" width="250px" height="250px" />
+                                    <img src="" data-echo="./images/gifs/pixelfucks.gif" width="250px" height="250px" />
+                                <div class="cta">
+                                    <a class="button" href="/artists.html">See More</a>
+                                </div>
+                            </div>
+
+                            <div class="footer-summary">
+                                <h3>Gifpops are super easy to make</h3>
+                                <ul class="make-options">
+                                    <li>
+                                        <img src="" data-echo="./images/drag-drop.png" width="250px" height="200px" />
+                                        <h4>Drag &amp; Drop</h4>
+                                        <h5>your GIF file here</h5>
+                                    </li>
+                                    <li>
+                                        <img src="" data-echo="./images/upload.png" width="250px" height="200px" />
+                                        <h4>Upload</h4>
+                                        <h5>a GIF file</h5>
+                                    </li>
+                                    <li>
+                                        <img src="" data-echo="./images/flip-flop.png" width="250px" height="200px" />
+                                        <h4>Flip-Flop</h4>
+                                        <h5>Between two images</h5>
+                                    </li>
+                                </ul>
+
+                                <div class="url-method">
+                                    <input type="text" placeholder="http://imgur.com/awesome.gif" />
+                                    <h4>Enter a URL</h4>
+                                    <h5>Vine and Instagram Videos work too!</h5>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+
+          <!-- <h2 style="margin: 20px 0 50px;
 -webkit-font-smoothing: antialiased;
 text-align: center;
 color: #000;
@@ -111,7 +246,7 @@ line-height: 33px;">Gifpop is a tool to make custom cards from animated gifs, us
                 <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
               </form>
             </div>
-          </div>
+          </div> -->
 
 
      {% endif %}

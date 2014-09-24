@@ -1,0 +1,25 @@
+// bower:scss
+@import "breakpoint-sass/stylesheets/breakpoint";
+@import "bourbon/dist/bourbon";
+// endbower
+@import "includes/queries";
+@import "includes/variables";
+
+@import "breakpoints/base";
+
+@media only screen and (min-width: 480px) {
+    @import  "breakpoints/480";
+}
+
+@media only screen and (min-width: 768px) {
+    @import  "breakpoints/768";
+}
+
+@media only screen and (min-width: 1280px) {
+    @import  "breakpoints/1280";
+}
+
+
+
+
+
