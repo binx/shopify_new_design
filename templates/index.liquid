@@ -23,7 +23,7 @@
                 <!-- <div id="nav-clear"></div> -->
                 <div id="home-intro" class="home-container resize-height" data-height="125">
                     <div class="sprite-bg" data-frames="10" data-speed="4">
-                        <img src="" data-echo="./images/sprites/01.jpg" />
+                        <img src="" data-echo="{{ '01.jpg' | asset_url }}" />
                     </div>
                     <div class="bg-vignette bg-vignette-dark"></div>
                     <!-- <div id="nav-fade"></div> -->
@@ -32,7 +32,7 @@
                             <h2>Turn your GIFs into IRL prints</h2>
                             <p>Through the magic of lenticular printing, Gifpop can turn all of your wildest GIFs in to real printed animated pieces.</p>
                             <div class="cta">
-                                <a class="button scroll-button" href="#home-browse"><img src="./images/down-arrow.svg" width="25px" height="25px" /></a>
+                                <a class="button scroll-button" href="#home-browse"><img src="{{ 'down-arrow.svg' | asset_url }}" width="25px" height="25px" /></a>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
 
                 <div id="home-browse" class="home-container resize-height" data-height="100">
                     <div class="sprite-bg" data-frames="16" data-speed="1">
-                        <img src="" data-echo="./images/sprites/02-browse.jpg" />
+                        <img src="" data-echo="{{ '02-browse.jpg' | asset_url }}" />
                     </div>
                     <div class="bg-vignette bg-vignette-dark"></div>
                      <div class="content vertical-center">
@@ -58,7 +58,7 @@
 
                 <div id="home-giffy" class="home-container resize-height" data-height="100">
                     <div class="sprite-bg" data-frames="7" data-speed="2">
-                        <img src="" data-echo="./images/sprites/04-gifpop.png" />
+                        <img src="" data-echo="{{ '04-gifpop.png' | asset_url }}" />
                     </div>
                     <div class="bg-vignette bg-vignette-dark"></div>
                      <div class="content vertical-center">
@@ -75,7 +75,7 @@
 
                 <div id="home-example" class="home-container resize-height" data-height="100">
                     <div class="sprite-bg" data-frames="16" data-speed="2">
-                        <img src="" data-echo="./images/sprites/03-example.jpg" />
+                        <img src="" data-echo="{{ '03-example.jpg' | asset_url }}" />
                     </div>
                     <div class="bg-vignette bg-vignette-dark"></div>
                      <div class="content vertical-center">
@@ -92,7 +92,7 @@
 
                 <div id="home-footer" class="home-container resize-height" data-height="100">
                     <div class="sprite-bg" data-frames="10" data-speed="8">
-                        <img src="" data-echo="./images/sprites/05-footer.png" />
+                        <img src="" data-echo="{{ '05-footer.png' | asset_url }}" />
                     </div>
                     <div class="bg-vignette bg-vignette-very-dark"></div>
                      <div class="content">
@@ -100,9 +100,9 @@
 
                             <div class="artist-gifs footer-summary">
                                 <h3>Check out our Artists Prints</h3>
-                                    <img src="" data-echo="./images/gifs/89a.gif" width="250px" height="250px" />
-                                    <img src="" data-echo="./images/gifs/remastered.gif" width="250px" height="250px" />
-                                    <img src="" data-echo="./images/gifs/pixelfucks.gif" width="250px" height="250px" />
+                                    <img src="" data-echo="{{ '89a.gif' | asset_url }}" width="250px" height="250px" />
+                                    <img src="" data-echo="{{ 'remastered.gif' | asset_url }}" width="250px" height="250px" />
+                                    <img src="" data-echo="{{ 'pixelfucks.gif' | asset_url }}" width="250px" height="250px" />
                                 <div class="cta">
                                     <a class="button" href="/artists.html">See More</a>
                                 </div>
@@ -112,17 +112,17 @@
                                 <h3>Gifpops are super easy to make</h3>
                                 <ul class="make-options">
                                     <li>
-                                        <img src="" data-echo="./images/drag-drop.png" width="250px" height="200px" />
+                                        <img src="" data-echo="{{ 'drag-drop.png' | asset_url }}" width="250px" height="200px" />
                                         <h4>Drag &amp; Drop</h4>
                                         <h5>your GIF file here</h5>
                                     </li>
                                     <li>
-                                        <img src="" data-echo="./images/upload.png" width="250px" height="200px" />
+                                        <img src="" data-echo="{{ 'upload.png' | asset_url }}" width="250px" height="200px" />
                                         <h4>Upload</h4>
                                         <h5>a GIF file</h5>
                                     </li>
                                     <li>
-                                        <img src="" data-echo="./images/flip-flop.png" width="250px" height="200px" />
+                                        <img src="" data-echo="{{ 'flip-flop.png' | asset_url }}" width="250px" height="200px" />
                                         <h4>Flip-Flop</h4>
                                         <h5>Between two images</h5>
                                     </li>
