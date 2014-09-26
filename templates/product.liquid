@@ -303,7 +303,6 @@ jQuery(function() {
     if (variant) {
 
       if (variant.inventory_management == "shopify") {
-        console.log(variant.price)
         if (variant.inventory_quantity > 0 && variant.price == 2500) {
           jQuery('#variant-inventory').text(variant.inventory_quantity + ' left of 20');
         } else if (variant.inventory_quantity > 0) {

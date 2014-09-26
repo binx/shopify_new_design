@@ -182,7 +182,7 @@ else {
                 HEADER.addClass('wide');
             }
             else {
-                $('#nav').css('marginTop', logo_height*0.45 +20);
+                // $('#nav').css('marginTop', logo_height*0.45 +20);
             }
             hidden_header_items.css('visibility','visible');
         }
