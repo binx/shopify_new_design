@@ -79,6 +79,12 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | split: '.' | first | remove: '/' | remove: '_' }} {% if template == 'index' %}index{% endif %}">
 
+
+  {% if page_title != 'Gifpop!' %}
+  <div id="bg-container">{{ page_title }}</div>
+  {% endif %}
+  
+  <div id="outer-container">
   <div id="container">
 
     <header id="header" class="clearfix{% if settings.use_logo %} use-logo{% endif %}{% if settings.show_multiple_currencies %} currencies{% endif %}{% if settings.force_wide_view %} wide{% endif %}">
@@ -203,16 +209,8 @@
       <ul class="clearfix" id="footer-modules">
 
         {% if settings.show_about_module %}
-        <li class="ft-module two-thirds" id="about-module">
-          {% if settings.about_module_title != '' %}
-          <h3>{{ settings.about_module_title | strip_html }}</h3>
-          {% endif %}
-          <div id="about-description" class="clearfix">
-            <!-- {{ settings.about_module_text | newline_to_br }} -->
-            Gifpop! is proudly made in Brooklyn and manufactured in New York.<br/>Gifpop! is a project by <a href="http://rachelbinx.com">Rachel Binx</a> and <a href="http://postarchitectural.com">Sha Hwang</a>, and they are in love with internet culture, data visualization, and travel. Together they also make <a href="http://meshu.io">Meshu</a>.
-          </div>
-        </li>
-        <li class="ft-module {{ width }}">
+
+        <li class="ft-module full-width">
           {% if settings.social_tumblr.size > 0 %}<a id="ps-tumblr" class="ft-share ir" href="{{ settings.social_tumblr }}">Tumblr</a>{% endif %}
           {% if settings.social_instagram.size > 0 %}<a id="ps-instagram" class="ft-share ir" href="{{ settings.social_instagram }}">Instagram</a>{% endif %}
           {% if settings.social_pinterest.size > 0 %}<a id="ps-pinterest" class="ft-share ir" href="{{ settings.social_pinterest }}">Pinterest</a>{% endif %}
@@ -222,6 +220,17 @@
           {% if settings.social_facebook.size > 0 %}<a id="ps-facebook" class="ft-share ir" href="{{ settings.social_facebook }}">Facebook</a>{% endif %}
           {% if settings.twitter_username.size > 0 and settings.twitter_username != 'shopify' %}<a id="ps-twitter" class="ft-share ir" href="http://www.twitter.com/{{ settings.twitter_username }}">Twitter</a>{% endif %}
         </li>
+
+        <li class="ft-module full-width" id="about-module">
+          {% if settings.about_module_title != '' %}
+          <h3>{{ settings.about_module_title | strip_html }}</h3>
+          {% endif %}
+          <div id="about-description" class="clearfix">
+            <!-- {{ settings.about_module_text | newline_to_br }} -->
+            Gifpop! is proudly made in Brooklyn and manufactured in New York.<br/>Gifpop! is a project by <a href="http://rachelbinx.com">Rachel Binx</a> and <a href="http://postarchitectural.com">Sha Hwang</a>, and they are in love with internet culture, data visualization, and travel. Together they also make <a href="http://meshu.io">Meshu</a>.
+          </div>
+        </li>
+
         {% endif %}
 
         {% if settings.show_contact_module %}
@@ -294,9 +303,8 @@
 
       </footer><!-- #footer -->
       {% endunless %}
-    </div><!-- #container -->
 
-    <div id="sub-footer" class="clearfix">
+      <div id="sub-footer" class="clearfix">
 
       <div class="footer-left-content">
         <!-- {% if linklists.footer.links.size > 0 %}
@@ -324,6 +332,12 @@
       {% endif %}
 
     </div><!-- #sub-footer -->
+
+    </div><!-- #container -->
+
+    </div><!-- #outer-container -->
+
+    
 
     {{ 'jquery.colorbox-min.js' | asset_url | script_tag }}
     {{ 'shop.js' | asset_url | script_tag }}

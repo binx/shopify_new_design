@@ -132,7 +132,7 @@ loadImages('.related-products-list img',FOUR_PER_ROW_H);
 /*==========================*/
 
 /* Handle footer */
-$('#footer-modules li:last-child').css('margin-right', 0)
+// $('#footer-modules li:last-child').css('margin-right', 0)
 
 /* Handle Cart Total */
 var char_elem = $('#cart-price');
