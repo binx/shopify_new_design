@@ -79,7 +79,7 @@
                 </div>
 
 
-                <div id="home-footer" class="home-container resize-height" data-height="40">
+                <div id="home-metagifs" class="home-container resize-height" data-height="50">
                   <div class="sprite-bg" data-frames="10" data-speed="8">
                     <img src="" data-echo="{{ '05-footer.png' | asset_url }}" />
                   </div>
@@ -122,28 +122,21 @@
                               <h2>GET YOUR GIF ON!</h2>
                               <ul class="make-options">
                                   <li>
-                                      <img src="" data-echo="{{ 'drag-drop.png' | asset_url }}" width="250px" height="200px" />
-                                      <h4>Drag &amp; Drop</h4>
-                                      <h5>your GIF file here</h5>
-                                  </li>
-                                  <li>
                                       <img src="" data-echo="{{ 'upload.png' | asset_url }}" width="250px" height="200px" />
-                                      <h4>Upload</h4>
-                                      <h5>a GIF file</h5>
+                                      <h4>Gif Chop</h4>
+                                      <h5>Gifs, Vines, Instagrams</h5>
                                   </li>
                                   <li>
                                       <img src="" data-echo="{{ 'flip-flop.png' | asset_url }}" width="250px" height="200px" />
                                       <h4>Flip-Flop</h4>
-                                      <h5>Between two images</h5>
+                                      <h5>Fade between two images</h5>
+                                  </li>
+                                  <li>
+                                      <img src="" data-echo="{{ 'flip-flop.png' | asset_url }}" width="250px" height="200px" />
+                                      <h4>Artist Prints</h4>
+                                      <h5>View the featured artists gallery</h5>
                                   </li>
                               </ul>
-
-                              <div class="url-method">
-                                  <input type="text" placeholder="http://imgur.com/awesome.gif" />
-                                  <h4>Enter a URL</h4>
-                                  <h5>Vine and Instagram Videos work too!</h5>
-                              </div>
-
                           </div>
                       </div>
                   </div>
@@ -152,88 +145,7 @@
                     <div class="upp">View this print</div>
                   </a>
               </div>
-
         </div>
-
-
-          <!-- <h2 style="margin: 20px 0 50px;
--webkit-font-smoothing: antialiased;
-text-align: center;
-color: #000;
-text-transform: uppercase;
-font-size: 24px;
-line-height: 33px;">Gifpop is a tool to make custom cards from animated gifs, using the magic of lenticular printing.</h2>
-
-          <a class="index-button" href="/products/gifchop">
-            <div class="gif-image">
-              <img src="{{ 'gifpop_index_1.gif' | asset_url }}" class="static">
-              <img src="{{ 'gifpop_index.gif' | asset_url }}" class="animated">
-            </div>
-            <div class="button">
-              <h2>Make Your Own</h2>
-              <p>Upload your own gifs to be printed</p>
-            </div>
-          </a>
-          <a class="index-button" href="/collections/artists">
-            <div class="gif-image">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/dvdp_8x8_442_1.jpg" class="static">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/dvdp_8x8_442.gif" class="animated">
-            </div>
-            <div class="button">
-              <h2>Support Artists</h2>
-              <p>Because your life needs more gif art</p>
-            </div>
-          </a>
-
-          <div class="index-section">
-            <img src="http://cdn.shopify.com/s/files/1/0172/2296/files/lenticular_explanation_full.gif?3945" class="index-left">
-            <div class="index-right third">
-              <h2>lenticular magic</h2>
-              <p><b>We are able to print up to ten frames of animation, thanks to the magic of lenticular printing!</b> Each lenticular sheet is faceted which allows you to see different slices of an image at different angles. The sheet and the print are aligned so that each tiny slice of a frame matches with a lens in the sheet, and when you move the sheet, the animation plays!</p>
-            </div>
-          </div>
-
-          <div class="index-section">
-            <img src="http://cdn.gifpop.io/static/images/diagrams/sizes_icon.jpg" class="index-right">
-            <div class="index-left third">
-              <h2>sizes and pricing</h2>
-              <p><b>We offer five different sizes of Gifpops, starting at only $12 for your own custom card!</b> If you're resizing your own work for Gifpop, we suggest the above resolutions for optimal printing quality.</p>
-            </div>
-          </div>
-
-          <div class="index-section">
-            <a class="gif-image index-left" href="http://gifpop.io/products/mr-div-retro-sphere">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/pixelfucks_static.jpg" class="static">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/pixelfucks_large_290.gif" class="animated">
-            </a>
-            <a class="gif-image index-left" style="margin:-1px 0 0 -3px;" href="http://gifpop.io/products/mat-lucas-gif">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/89a_static.jpg" class="static">
-              <img src="http://cdn.gifpop.io/static/images/sample_gifs/89a_large_290.gif" class="animated" >
-            </a>
-            <div class="index-right third">
-              <h2>supporting artists</h2>
-              <p><b>Each artist on Gifpop receives 80% of the profits we make on every art print sold.</b> We've worked with all the artists to pick gifs that will look great, and the artists themselves have worked hard to rerender, add detail, recolor, and adjust their work to make these prints truly unique.</p>
-            </div>
-          </div>
-          <div class="index-section" style="padding-bottom: 300px;">
-            {% assign product = collections['gift-cards'].products.first %}
-
-            <div class="index-right">
-            {% for variant in product.variants %}
-            <form method="post" action="/cart/add">
-              <input type="hidden" name="id" value="{{ variant.id }}" />
-              <input class="button gift-card" type="submit" value="{{ variant.title }}" />
-            </form>
-            {% endfor %}
-            </div>
-
-            <div class="index-left third">
-              <h2>GIF-t cards</h2>
-              <p><b>An easier way to give the gift of gif!</b><br> Our gift cards are available in $10, $20, and $50 denominations. Just click on the amount you'd like to purchase, and we will email you a printable gift card within 24 hours.</p>
-            </div>
-          </div>
-          </div> -->
-
 
      {% endif %}
 
