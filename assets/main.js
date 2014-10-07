@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var 
+var
 	win = $(window),
 	nav = $('#main-nav'),
 	logo = $('#logo'),
@@ -10,7 +10,7 @@ var
 	gifContainers = $('.home-container > .sprite-bg'),
 	scrollButtons = $('.cta > .scroll-button');
 
-var 
+var
 	rHeight = 0,
 	vertY = 0,
 	parent,
@@ -86,7 +86,7 @@ function setBgSpriteFrame(element, frame, doLog) {
 }
 
 
-var 
+var
 	elTop = 0,
 	rel = 0,
 	pos = 0,
@@ -133,7 +133,7 @@ function doNavigationTuck() {
 // call helper function to do positioning
 
 function stepFrames(e) {
-	
+
 	gifContainers.each(function(index){
 		if ($(this).attr('data-speed') > 0) {
 			mod = $(this).attr('data-speed');
@@ -156,7 +156,7 @@ function stepFrames(e) {
 //INIT
 /////////
 
-// Do Image Loading 
+// Do Image Loading
 // Uses Echo.js
 // https://github.com/toddmotto/echo
 echo.init({
@@ -171,7 +171,7 @@ echo.init({
 doResize();
 win.on('resize', doResize);
 
-// Run the navigation tuck check 
+// Run the navigation tuck check
 doNavigationTuck();
 
 //Get rid of shade, ensures element resizing has happened before displaying container
