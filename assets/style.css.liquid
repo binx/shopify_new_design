@@ -2,7 +2,7 @@
 /* ==================================== */
 
 html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { margin: 0; font-size:14px; line-height:21px; background-color: #666;}
+body { margin: 0; font-size:14px; line-height:21px; background-color: #000;}
 
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 ::-moz-selection { background: {{ settings.global_text_highlight_color }}; color: #fff; text-shadow: none; }
@@ -1399,7 +1399,7 @@ nav {
   display: inline-block;
   font-size: 1.1em;
   font-weight: 400;
-  padding: 0 40px;
+  padding: 0 35px;
   zoom: 1;
   z-index:9999;
 }
@@ -1582,7 +1582,9 @@ nav {
   letter-spacing: .5px;
 }
 .index #footer {
-  display: none;
+  margin: 0 auto;
+  background: #000;
+  border-top-color: black;
 }
 
 #footer a {
@@ -2848,11 +2850,8 @@ h1.page-title {
   padding: 22px 44px 0 0;
 }
 .exp-image {
-  margin-bottom: 10px;
-  max-width: 390px;
-}
-.exp-image-first {
-  margin-top: 70px;
+  height: 200px;
+  margin: 0 20px;
 }
 
 #gifbot {
@@ -2873,6 +2872,7 @@ h1.page-title {
 .sub-header {
   text-transform: uppercase;
   font-size: 18px;
+  color: #bbb;
 }
 .artist .sub-header {
   display: none;
@@ -3061,7 +3061,7 @@ h1.page-title {
   width: 100px;
   text-align: center;
   cursor: pointer;
-  color: #555;
+  color: #808080;
   border: none;
   font-size: 14px;
   line-height: 16px;
@@ -3076,19 +3076,19 @@ h1.page-title {
   color: white;
 }
 #product-variants li:hover {
-  color: #808080;
+  color: #bbb;
 }
 #product-variants .compare {
   display: inline-block;
   padding: 5px;
-  background-color: #555;
+  background-color: #808080;
 }
 #product-variants li.selected .compare,
 #product-variants li.selected:hover .compare {
   background-color: white;
 }
 #product-variants li:hover .compare {
-  background-color: #808080;
+  background-color: #bbb;
 }
 #product-variants li:nth-child(1) {
   width: 65px;
@@ -3243,19 +3243,19 @@ h1.page-title {
   float: right;
 }
 .shappify_qb_grid {
-  color: #808080;
+  color: #bbb;
   float: right;
   margin-top: -10px;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
 }
 .shappify_qb_grid tbody tr:first-child {
   display: none;
 }
 .shappify_qb_grid tbody tr:nth-child(odd) {
-  background-color: #fff;
+  background-color: #000;
 }
 .shappify_qb_grid tbody tr:nth-child(even) {
-  background-color: #eee;
+  background-color: #333;
 }
 .shappify_qb_grid thead {
   display: none;
@@ -3329,10 +3329,12 @@ h1.page-title {
   width:50px;
   margin-bottom:0;
   text-align:center;
-  border: 2px solid white;
+  border: 2px solid transparent;
   padding: 0 5px;
   font-size: 50px;
   line-height: 70px;
+  background: transparent;
+  color: white;
   font-family:{{ settings.text_font }};
 }
 #quantity:hover {
@@ -3343,6 +3345,7 @@ h1.page-title {
   display: inline-block;
   margin-right: 12px;
   float: left;
+  color: #fff;
 }
 .artist .pair {
   margin-right: 0;
@@ -3361,7 +3364,7 @@ h1.page-title {
   text-transform: uppercase;
   font-size: 14px;
   text-align: center;
-  color: #a9aaaa;
+  color: #808080;
   letter-spacing: 1px;
 }
 .artist .caption {
@@ -3372,7 +3375,7 @@ h1.page-title {
   display: inline-block;
   vertical-align: top;
   line-height: 78px;
-  color: #a9aaaa;
+  color: #808080;
   float: left;
 }
 #variant-inventory {

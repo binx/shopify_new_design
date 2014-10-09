@@ -54,6 +54,8 @@ function doResize() {
 		})
 	})
 
+	if ($("body").hasClass("index")) $("#content").height($(document).height());
+
 	// Do vertical centering of content
 	containerContent.each(function(){
 		if ($(this).hasClass('vertical-center')) {
