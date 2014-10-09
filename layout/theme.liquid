@@ -83,7 +83,7 @@
   {% if page_title != 'Gifpop!' %}
   <div id="bg-container">{{ page_title }}</div>
   {% endif %}
-  
+
   <div id="outer-container">
   <div id="container">
 
@@ -130,8 +130,11 @@
       <h1 id="title" class="smooth" role="banner"><a href="/"></a></h1>
       {% endif %}
 
-      <hr class="title" />
-      <div class="title-text header-text">Give the Gift of GIF</div>
+      <div class="header-rule-container">
+        <hr class="inline-rule left">
+        <div class="header-text">Give the Gift of GIF</div>
+        <hr class="inline-rule right">
+      </div>
 
 
       <nav role="navigation">
@@ -337,7 +340,7 @@
 
     </div><!-- #outer-container -->
 
-    
+
 
     {{ 'jquery.colorbox-min.js' | asset_url | script_tag }}
     {{ 'shop.js' | asset_url | script_tag }}

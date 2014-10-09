@@ -137,7 +137,7 @@ a {
   left: 0;
   z-index: 1;
 
-  background-image: url({{ 'remastered.gif' | asset_url }});
+  background-image: url({{ 'preview-artists-zwian.gif' | asset_url }});
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1343,26 +1343,24 @@ p.highlight {
   color:white;
 }
 
-hr.title {
-  margin: 0 0 -20px 0;
-  border-top: 1px solid #fff;
+/* Give the gift of gif */
+.header-rule-container {
   clear: both;
+  width: 100%;
 }
-
+hr.inline-rule {
+  display: inline-block;
+  border-top: 1px solid #fff;
+  width: 335px;
+}
 .header-text {
   text-transform: uppercase;
   font-size: 18px;
-  margin: 20px auto;
-  text-align: center;
-  display: block;
-}
+  display: inline-block;
 
-.title-text {
-  padding: 7px 15px;
+  padding: 8px;
   color: #fff;
-  background-color: #222;
-  display: block;
-  width: 191px;
+  width: 190px;
   margin: 0 auto 20px;
 }
 
@@ -3011,6 +3009,7 @@ h1.page-title {
   margin:0 0 10px 0;
   line-height:40px;
   font-family:{{ settings.headings_font }};
+  font-weight: 500;
   text-transform: uppercase;
 }
 
