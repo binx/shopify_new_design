@@ -2,7 +2,7 @@
 /* ==================================== */
 
 html { font-size: 100%; overflow-y: scroll; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-body { margin: 0; font-size:14px; line-height:21px; background-color: #000;}
+body { margin: 0; font-size:14px; line-height:21px; background-color: #111;}
 
 body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 ::-moz-selection { background: {{ settings.global_text_highlight_color }}; color: #fff; text-shadow: none; }
@@ -1587,26 +1587,26 @@ nav {
   padding:20px 0 30px;
 }
 
-.make-options li {
-  width: 250px;
-}
-
 /* Footer */
 /* ==================================== */
 
 #footer {
   border-top:1px solid #808080;
-  width:884px;
   /*background-color: #333;*/
   padding: 0 40px;
   margin-left: -40px;
   margin-top: 50px;
   letter-spacing: .5px;
 }
+@media (min-width: 1030px) {
+  #footer {
+    width:884px;
+  }
+}
 .index #footer {
   margin: 0 auto;
-  background: #000;
-  border-top-color: black;
+  background: #111;
+  border-top-color: transparent;
 }
 
 #footer a {
@@ -1621,8 +1621,8 @@ nav {
 
 #footer-modules {
   display:block;
-  width:884px;
-  margin:40px auto;
+  /*width:884px;
+  margin:40px auto;*/
   padding:0;
   list-style-type:none;
 }
@@ -1638,6 +1638,12 @@ nav {
   width: 60%;
   margin: auto 20%;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .ft-module.full-width {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .ft-module.one-third {
@@ -2455,12 +2461,26 @@ a.slide-link {
   position: relative;
   overflow: hidden;
 }
-.index-left {
-  float: left;
+.gift-card-wrapper {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin: 120px auto 0;
 }
-.index-right {
-  float: right;
+@media (min-width: 1030px) {
+  .gift-card-wrapper {
+    width: 850px;
+  }
+  .gift-card-wrapper h3 {
+    float: left;
+    margin-bottom: 0;
+  }
 }
+.gift-card-wrapper h3 {
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 .third {
   width: 32%;
 }
@@ -2503,20 +2523,26 @@ a.slide-link {
 .gift-card {
   display: inline-block;
   border-radius: 0;
-  background-color: #a9aaaa;
-  font-size: 35px;
+  background-color: transparent;
+  color: white;
+  font-size: 28px;
   margin-left: 30px;
-  height: 90px;
-  width: 160px;
-  margin-top: 47px;
-  border: 5px solid #808080;
+  height: 70px;
+  width: 120px;
+  border: 2px solid #bbb;
   font-family:{{ settings.headings_font }};
 }
 .gift-card:hover {
-  background-color: #ff9900;
+  background-color: #333;
 }
-.index-right form {
-  float: left;
+.gift-card-wrapper form {
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .gift-card {
+    margin-bottom: 20px;
+    margin-left: 10px;
+  }
 }
 
 .question {
