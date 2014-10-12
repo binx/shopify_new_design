@@ -5,9 +5,9 @@ var
 	nav = $('#main-nav'),
 	logo = $('#logo'),
 	resizeHeight = $('.resize-height'),
-	spriteBg = $('.home-container > .sprite-bg'),
+	spriteBg = $('.sprite-bg'),
 	containerContent = $('.home-container > .content'),
-	gifContainers = $('.home-container > .sprite-bg'),
+	gifContainers = $('.sprite-bg'),
 	scrollButtons = $('.cta > .scroll-button');
 
 var
