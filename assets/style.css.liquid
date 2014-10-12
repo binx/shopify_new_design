@@ -644,6 +644,25 @@ margin:0 auto;
   margin:6px 0 0 0;
 }
 
+.credit {
+  position: fixed;
+  z-index: 1;
+  background: rgba(0,0,0,.5);
+  bottom: 0px;
+  color: #808080;
+  padding: 5px 10px;
+}
+.index .credit {
+  position: absolute;
+}
+.credit .upp {
+  text-transform: uppercase;
+  font-style: italic;
+}
+.credit:hover {
+  color: white;
+}
+
 /* COLLECTION ITEMS */
 
 .collection-list-product-count { line-height: 21px; margin: 0; }
@@ -1347,6 +1366,7 @@ p.highlight {
 .header-rule-container {
   clear: both;
   width: 100%;
+  display: none;
 }
 hr.inline-rule {
   display: inline-block;
@@ -2812,7 +2832,7 @@ h1.page-title {
   padding-top: 10px;
   margin-top: 20px;
 }
-#exp-text .exp-text-block {
+.exp-text-block {
   width: 80%;
   margin: 4em 10%;
   text-align: center;
@@ -3379,7 +3399,7 @@ h1.page-title {
 }
 #variant-inventory {
   text-transform: uppercase;
-  color: #555;
+  color: #808080;
   font-size: 14px;
   clear: both;
   display: none;
@@ -3399,6 +3419,16 @@ h1.page-title {
   zoom: 1;
   *display: inline;
   cursor:pointer;
+}
+
+#product-add-wrap .ship-date {
+  float: right;
+  clear: both;
+  margin: 5px 7px;
+  color: #808080;
+}
+.artist #product-add-wrap .ship-date {
+  visibility: hidden;
 }
 
 #product-add-wrap:hover * {
